@@ -1,0 +1,11 @@
+.vs/
+Generated Files/
+*.opendb
+*.db
+[Dd]ebug/
+[Rr]elease/
+ipch/
+*.user
+xcshareddata/
+xcuserdata/
+*.xcuserdatad/

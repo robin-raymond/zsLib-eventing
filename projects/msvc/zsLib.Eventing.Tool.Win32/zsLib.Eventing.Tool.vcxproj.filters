@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="zsLib">
+      <UniqueIdentifier>{2d21f799-6e1a-498f-86d7-7aa5907793a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing">
+      <UniqueIdentifier>{00af2fd9-18d5-436f-ae30-679d1587f16f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing\tool">
+      <UniqueIdentifier>{9225e842-6126-4df2-8e9a-13add86075d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing\tool\cpp">
+      <UniqueIdentifier>{a32f323c-637a-45ee-860d-b4d5785a02b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing\tool\internal">
+      <UniqueIdentifier>{8565b212-8ef3-4d00-9ecc-29b8fa9328c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\ICommandLine.h">
+      <Filter>zsLib\eventing\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\types.h">
+      <Filter>zsLib\eventing\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\types.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_CommandLine.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\OutputStream.h">
+      <Filter>zsLib\eventing\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\ICompiler.h">
+      <Filter>zsLib\eventing\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\tool.h">
+      <Filter>zsLib\eventing\tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Compiler.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_CommandLine.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Compiler.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

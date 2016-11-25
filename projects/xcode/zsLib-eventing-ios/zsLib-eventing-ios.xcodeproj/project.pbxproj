@@ -1,0 +1,327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		008698631DE3F476009D669C /* zsLib_eventing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698461DE3F476009D669C /* zsLib_eventing.cpp */; };
+		008698641DE3F476009D669C /* zsLib_eventing_EventingTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698471DE3F476009D669C /* zsLib_eventing_EventingTypes.cpp */; };
+		008698651DE3F476009D669C /* zsLib_eventing_Hasher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698481DE3F476009D669C /* zsLib_eventing_Hasher.cpp */; };
+		008698661DE3F476009D669C /* zsLib_eventing_Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698491DE3F476009D669C /* zsLib_eventing_Helper.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		008698351DE3F458009D669C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		008698371DE3F458009D669C /* libzsLib-eventing-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libzsLib-eventing-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		008698461DE3F476009D669C /* zsLib_eventing.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing.cpp; sourceTree = "<group>"; };
+		008698471DE3F476009D669C /* zsLib_eventing_EventingTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_EventingTypes.cpp; sourceTree = "<group>"; };
+		008698481DE3F476009D669C /* zsLib_eventing_Hasher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_Hasher.cpp; sourceTree = "<group>"; };
+		008698491DE3F476009D669C /* zsLib_eventing_Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_Helper.cpp; sourceTree = "<group>"; };
+		0086984A1DE3F476009D669C /* eventing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = eventing.h; sourceTree = "<group>"; };
+		0086984B1DE3F476009D669C /* IEventingTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IEventingTypes.h; sourceTree = "<group>"; };
+		0086984C1DE3F476009D669C /* IHasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHasher.h; sourceTree = "<group>"; };
+		0086984D1DE3F476009D669C /* IHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IHelper.h; sourceTree = "<group>"; };
+		0086984F1DE3F476009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		008698501DE3F476009D669C /* zsLib_eventing_EventingTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_EventingTypes.h; sourceTree = "<group>"; };
+		008698511DE3F476009D669C /* zsLib_eventing_Hasher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_Hasher.h; sourceTree = "<group>"; };
+		008698521DE3F476009D669C /* zsLib_eventing_Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_Helper.h; sourceTree = "<group>"; };
+		008698621DE3F476009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		008698341DE3F458009D669C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0086982E1DE3F458009D669C = {
+			isa = PBXGroup;
+			children = (
+				008698431DE3F476009D669C /* zsLib */,
+				008698381DE3F458009D669C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		008698381DE3F458009D669C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				008698371DE3F458009D669C /* libzsLib-eventing-ios.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		008698431DE3F476009D669C /* zsLib */ = {
+			isa = PBXGroup;
+			children = (
+				008698441DE3F476009D669C /* eventing */,
+			);
+			name = zsLib;
+			path = ../../../zsLib;
+			sourceTree = "<group>";
+		};
+		008698441DE3F476009D669C /* eventing */ = {
+			isa = PBXGroup;
+			children = (
+				008698451DE3F476009D669C /* cpp */,
+				0086984E1DE3F476009D669C /* internal */,
+				0086984A1DE3F476009D669C /* eventing.h */,
+				0086984B1DE3F476009D669C /* IEventingTypes.h */,
+				0086984C1DE3F476009D669C /* IHasher.h */,
+				0086984D1DE3F476009D669C /* IHelper.h */,
+				008698621DE3F476009D669C /* types.h */,
+			);
+			path = eventing;
+			sourceTree = "<group>";
+		};
+		008698451DE3F476009D669C /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				008698461DE3F476009D669C /* zsLib_eventing.cpp */,
+				008698471DE3F476009D669C /* zsLib_eventing_EventingTypes.cpp */,
+				008698481DE3F476009D669C /* zsLib_eventing_Hasher.cpp */,
+				008698491DE3F476009D669C /* zsLib_eventing_Helper.cpp */,
+			);
+			path = cpp;
+			sourceTree = "<group>";
+		};
+		0086984E1DE3F476009D669C /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				0086984F1DE3F476009D669C /* types.h */,
+				008698501DE3F476009D669C /* zsLib_eventing_EventingTypes.h */,
+				008698511DE3F476009D669C /* zsLib_eventing_Hasher.h */,
+				008698521DE3F476009D669C /* zsLib_eventing_Helper.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		008698361DE3F458009D669C /* zsLib-eventing-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 008698401DE3F458009D669C /* Build configuration list for PBXNativeTarget "zsLib-eventing-ios" */;
+			buildPhases = (
+				008698331DE3F458009D669C /* Sources */,
+				008698341DE3F458009D669C /* Frameworks */,
+				008698351DE3F458009D669C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "zsLib-eventing-ios";
+			productName = "zsLib-eventing-ios";
+			productReference = 008698371DE3F458009D669C /* libzsLib-eventing-ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0086982F1DE3F458009D669C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Robin Raymond";
+				TargetAttributes = {
+					008698361DE3F458009D669C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 008698321DE3F458009D669C /* Build configuration list for PBXProject "zsLib-eventing-ios" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 0086982E1DE3F458009D669C;
+			productRefGroup = 008698381DE3F458009D669C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				008698361DE3F458009D669C /* zsLib-eventing-ios */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		008698331DE3F458009D669C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				008698661DE3F476009D669C /* zsLib_eventing_Helper.cpp in Sources */,
+				008698651DE3F476009D669C /* zsLib_eventing_Hasher.cpp in Sources */,
+				008698641DE3F476009D669C /* zsLib_eventing_EventingTypes.cpp in Sources */,
+				008698631DE3F476009D669C /* zsLib_eventing.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		0086983E1DE3F458009D669C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../..,
+					../../../../zsLib,
+					../../../..,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		0086983F1DE3F458009D669C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../..,
+					../../../../zsLib,
+					../../../..,
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		008698411DE3F458009D669C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		008698421DE3F458009D669C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		008698321DE3F458009D669C /* Build configuration list for PBXProject "zsLib-eventing-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0086983E1DE3F458009D669C /* Debug */,
+				0086983F1DE3F458009D669C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		008698401DE3F458009D669C /* Build configuration list for PBXNativeTarget "zsLib-eventing-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				008698411DE3F458009D669C /* Debug */,
+				008698421DE3F458009D669C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0086982F1DE3F458009D669C /* Project object */;
+}

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="zsLib">
+      <UniqueIdentifier>{9a8e3489-fb6b-4631-b8ab-11a42995b516}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing">
+      <UniqueIdentifier>{64cd3879-8190-46d0-95a6-5727a515b407}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing\cpp">
+      <UniqueIdentifier>{6366cddd-a5af-4d50-ad5f-14f1d2e40753}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="zsLib\eventing\internal">
+      <UniqueIdentifier>{7b937d12-a892-45bf-8161-a381ad16b74c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\zsLib\eventing\IHelper.h">
+      <Filter>zsLib\eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\types.h">
+      <Filter>zsLib\eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\internal\zsLib_eventing_Helper.h">
+      <Filter>zsLib\eventing\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\internal\types.h">
+      <Filter>zsLib\eventing\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\IEventingTypes.h">
+      <Filter>zsLib\eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\eventing.h">
+      <Filter>zsLib\eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\internal\zsLib_eventing_EventingTypes.h">
+      <Filter>zsLib\eventing\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\IHasher.h">
+      <Filter>zsLib\eventing</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\internal\zsLib_eventing_Hasher.h">
+      <Filter>zsLib\eventing\internal</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\zsLib\eventing\cpp\zsLib_eventing.cpp">
+      <Filter>zsLib\eventing\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\cpp\zsLib_eventing_Helper.cpp">
+      <Filter>zsLib\eventing\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\cpp\zsLib_eventing_EventingTypes.cpp">
+      <Filter>zsLib\eventing\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\cpp\zsLib_eventing_Hasher.cpp">
+      <Filter>zsLib\eventing\cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

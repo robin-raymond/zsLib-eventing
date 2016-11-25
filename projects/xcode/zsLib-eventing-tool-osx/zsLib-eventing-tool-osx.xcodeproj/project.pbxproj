@@ -1,0 +1,327 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		008697F51DE3F20A009D669C /* zsLib_eventing_tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */; };
+		008697F61DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */; settings = {COMPILER_FLAGS = "-Wno-documentation"; }; };
+		008697F71DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		008697BB1DE3F1E9009D669C /* libzsLib-eventing-tool-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libzsLib-eventing-tool-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool.cpp; sourceTree = "<group>"; };
+		008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_CommandLine.cpp; sourceTree = "<group>"; };
+		008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Compiler.cpp; sourceTree = "<group>"; };
+		008697DE1DE3F20A009D669C /* ICommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICommandLine.h; sourceTree = "<group>"; };
+		008697DF1DE3F20A009D669C /* ICompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICompiler.h; sourceTree = "<group>"; };
+		008697E11DE3F20A009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		008697E21DE3F20A009D669C /* zsLib_eventing_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool.h; sourceTree = "<group>"; };
+		008697E31DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_CommandLine.h; sourceTree = "<group>"; };
+		008697E41DE3F20A009D669C /* zsLib_eventing_tool_Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Compiler.h; sourceTree = "<group>"; };
+		008697E51DE3F20A009D669C /* OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStream.h; sourceTree = "<group>"; };
+		008697E61DE3F20A009D669C /* tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
+		008697E71DE3F20A009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		008697B81DE3F1E9009D669C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		008697B21DE3F1E9009D669C = {
+			isa = PBXGroup;
+			children = (
+				008697C91DE3F20A009D669C /* zsLib */,
+				008697BC1DE3F1E9009D669C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		008697BC1DE3F1E9009D669C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				008697BB1DE3F1E9009D669C /* libzsLib-eventing-tool-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		008697C91DE3F20A009D669C /* zsLib */ = {
+			isa = PBXGroup;
+			children = (
+				008697CA1DE3F20A009D669C /* eventing */,
+			);
+			name = zsLib;
+			path = ../../../zsLib;
+			sourceTree = "<group>";
+		};
+		008697CA1DE3F20A009D669C /* eventing */ = {
+			isa = PBXGroup;
+			children = (
+				008697D91DE3F20A009D669C /* tool */,
+			);
+			path = eventing;
+			sourceTree = "<group>";
+		};
+		008697D91DE3F20A009D669C /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				008697DA1DE3F20A009D669C /* cpp */,
+				008697E01DE3F20A009D669C /* internal */,
+				008697DE1DE3F20A009D669C /* ICommandLine.h */,
+				008697DF1DE3F20A009D669C /* ICompiler.h */,
+				008697E51DE3F20A009D669C /* OutputStream.h */,
+				008697E61DE3F20A009D669C /* tool.h */,
+				008697E71DE3F20A009D669C /* types.h */,
+			);
+			path = tool;
+			sourceTree = "<group>";
+		};
+		008697DA1DE3F20A009D669C /* cpp */ = {
+			isa = PBXGroup;
+			children = (
+				008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */,
+				008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */,
+				008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */,
+			);
+			path = cpp;
+			sourceTree = "<group>";
+		};
+		008697E01DE3F20A009D669C /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				008697E11DE3F20A009D669C /* types.h */,
+				008697E21DE3F20A009D669C /* zsLib_eventing_tool.h */,
+				008697E31DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.h */,
+				008697E41DE3F20A009D669C /* zsLib_eventing_tool_Compiler.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		008697B91DE3F1E9009D669C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		008697BA1DE3F1E9009D669C /* zsLib-eventing-tool-osx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 008697C61DE3F1E9009D669C /* Build configuration list for PBXNativeTarget "zsLib-eventing-tool-osx" */;
+			buildPhases = (
+				008697B71DE3F1E9009D669C /* Sources */,
+				008697B81DE3F1E9009D669C /* Frameworks */,
+				008697B91DE3F1E9009D669C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "zsLib-eventing-tool-osx";
+			productName = "zsLib-eventing-tool-osx";
+			productReference = 008697BB1DE3F1E9009D669C /* libzsLib-eventing-tool-osx.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		008697B31DE3F1E9009D669C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Robin Raymond";
+				TargetAttributes = {
+					008697BA1DE3F1E9009D669C = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 008697B61DE3F1E9009D669C /* Build configuration list for PBXProject "zsLib-eventing-tool-osx" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 008697B21DE3F1E9009D669C;
+			productRefGroup = 008697BC1DE3F1E9009D669C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				008697BA1DE3F1E9009D669C /* zsLib-eventing-tool-osx */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		008697B71DE3F1E9009D669C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				008697F71DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */,
+				008697F61DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */,
+				008697F51DE3F20A009D669C /* zsLib_eventing_tool.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		008697C41DE3F1E9009D669C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../..,
+					../../../../zsLib,
+					../../../..,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		008697C51DE3F1E9009D669C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../../..,
+					../../../../zsLib,
+					../../../..,
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		008697C71DE3F1E9009D669C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		008697C81DE3F1E9009D669C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		008697B61DE3F1E9009D669C /* Build configuration list for PBXProject "zsLib-eventing-tool-osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				008697C41DE3F1E9009D669C /* Debug */,
+				008697C51DE3F1E9009D669C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		008697C61DE3F1E9009D669C /* Build configuration list for PBXNativeTarget "zsLib-eventing-tool-osx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				008697C71DE3F1E9009D669C /* Debug */,
+				008697C81DE3F1E9009D669C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 008697B31DE3F1E9009D669C /* Project object */;
+}

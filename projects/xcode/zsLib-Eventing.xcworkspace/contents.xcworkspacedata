@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:zsLib.Eventing.Compiler.Tool-osx.Tool/zsLib.Eventing.Compiler.Tool.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:zsLib-eventing-tool-ios/zsLib-eventing-tool-ios.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:zsLib-eventing-tool-osx/zsLib-eventing-tool-osx.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:zsLib-eventing-ios/zsLib-eventing-ios.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:zsLib-eventing-osx/zsLib-eventing-osx.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../cryptopp/projects/xcode/cryptopp-ios/cryptopp-ios.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../cryptopp/projects/xcode/cryptopp-osx/cryptopp-osx.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../zsLib/projects/xcode/zsLib-Test-ios/zsLib-Test-ios.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../zsLib/projects/xcode/zsLib-Test-osx/zsLib-Test-osx.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../zsLib/projects/xcode/zsLib-ios/zsLib-ios.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../../zsLib/projects/xcode/zsLib-osx/zsLib-osx.xcodeproj">
+   </FileRef>
+</Workspace>
