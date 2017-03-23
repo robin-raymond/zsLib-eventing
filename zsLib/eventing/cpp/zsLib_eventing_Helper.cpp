@@ -33,10 +33,14 @@ either expressed or implied, of the FreeBSD Project.
 
 #include <zsLib/Numeric.h>
 #include <zsLib/Log.h>
+#include <zsLib/Singleton.h>
 
 #include <cstdio>
 
 #include <cryptopp/hex.h>
+#include <cryptopp/base64.h>
+#include <cryptopp/osrng.h>
+
 
 namespace zsLib { namespace eventing { ZS_DECLARE_SUBSYSTEM(zsLib_eventing); } }
 
@@ -45,11 +49,66 @@ namespace zsLib
 {
   namespace eventing
   {
-    typedef CryptoPP::HexEncoder HexEncoder;
-    typedef CryptoPP::StringSink StringSink;
+    using CryptoPP::AutoSeededRandomPool;
+    using CryptoPP::Base64Encoder;
+    using CryptoPP::Base64Decoder;
+    using CryptoPP::ByteQueue;
+    using CryptoPP::HexEncoder;
+    using CryptoPP::HexDecoder;
+    using CryptoPP::StringSink;
 
     namespace internal
     {
+      void installRemoteEventingSettingsDefaults();
+      
+
+      //-----------------------------------------------------------------------
+      //-----------------------------------------------------------------------
+      //-----------------------------------------------------------------------
+      //-----------------------------------------------------------------------
+
+      class CryptoPPHelper
+      {
+      public:
+        static CryptoPPHelper &singleton()
+        {
+          AutoRecursiveLock lock(*zsLib::IHelper::getGlobalLock());
+          static Singleton<CryptoPPHelper> singleton;
+          return singleton.singleton();
+        }
+
+        CryptoPPHelper()
+        {
+          static const char *buffer = "1234567890";
+
+          String result;
+          {
+            Base64Encoder encoder(new StringSink(result), false);
+            encoder.Put((const BYTE *)buffer, strlen(buffer));
+            encoder.MessageEnd();
+          }
+
+          {
+            String &input = result;
+
+            ByteQueue queue;
+            queue.Put((BYTE *)input.c_str(), input.size());
+
+            ByteQueue *outputQueue = new ByteQueue;
+            Base64Decoder decoder(outputQueue);
+            queue.CopyTo(decoder);
+            decoder.MessageEnd();
+          }
+        }
+
+      protected:
+        //-----------------------------------------------------------------------
+        Log::Params log(const char *message)
+        {
+          return Log::Params(message, "zsLib::eventing::CryptoPPHelper");
+        }
+      };
+
       //-----------------------------------------------------------------------
       //-----------------------------------------------------------------------
       //-----------------------------------------------------------------------
@@ -72,6 +131,24 @@ namespace zsLib
     #pragma mark
     #pragma mark IHelper
     #pragma mark
+
+    //-------------------------------------------------------------------------
+    void IHelper::setup()
+    {
+      zsLib::IHelper::setup();
+      internal::CryptoPPHelper::singleton();
+      internal::installRemoteEventingSettingsDefaults();
+    }
+
+#ifdef WINRT
+    //-------------------------------------------------------------------------
+    void IHelper::setup(Windows::UI::Core::CoreDispatcher ^dispatcher)
+    {
+      zsLib::IHelper::setup(dispatcher);
+      internal::CryptoPPHelper::singleton();
+      internal::installRemoteEventingSettingsDefaults();
+    }
+#endif //WINRT
 
     //-------------------------------------------------------------------------
     SecureByteBlockPtr IHelper::loadFile(const char *path) throw (StdError)
@@ -104,7 +181,7 @@ namespace zsLib
 
       auto read = fread(buffer->BytePtr(), sizeof(BYTE), size, file);
 
-      if (read != size) {
+      if (read != static_cast<decltype(read)>(size)) {
         ZS_THROW_CUSTOM_PROPERTIES_1(StdError, ferror(file), String("Failed to read file: ") + pathStr + ", buffer size=" + string(buffer->SizeInBytes()));
       }
 
@@ -174,11 +251,20 @@ namespace zsLib
                                           )
     {
       size_t bufferSize = 0;
-      auto buffer = doc.writeAsJSON(prettyPrint, &bufferSize);
+      std::unique_ptr<char[]> buffer = doc.writeAsJSON(prettyPrint, &bufferSize);
       if (!buffer) return SecureByteBlockPtr();
-      SecureByteBlockPtr result(make_shared<SecureByteBlock>(bufferSize));
-      memcpy(result->BytePtr(), &(buffer[0]), bufferSize);
-      return result;
+
+      return IHelper::convertToBuffer(buffer, bufferSize);
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::writeJSON(
+                                          DocumentPtr doc,
+                                          bool prettyPrint
+                                          )
+    {
+      if (!doc) return SecureByteBlockPtr();
+      return writeJSON(*doc, prettyPrint);
     }
 
     //-------------------------------------------------------------------------
@@ -193,122 +279,267 @@ namespace zsLib
     }
 
     //-------------------------------------------------------------------------
-    String IHelper::getElementText(const ElementPtr &el)
+    SecureByteBlockPtr IHelper::writeXML(DocumentPtr doc)
     {
-      if (!el) return String();
-      return el->getText();
+      if (!doc) return SecureByteBlockPtr();
+      return writeXML(*doc);
     }
 
     //-------------------------------------------------------------------------
-    String IHelper::getElementTextAndDecode(const ElementPtr &el)
+    String IHelper::randomString(size_t lengthInChars)
     {
-      if (!el) return String();
-      return el->getTextDecoded();
-    }
+      static const char *randomCharArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      static size_t randomSize = strlen(randomCharArray);
 
-    //-----------------------------------------------------------------------
-    ElementPtr IHelper::createElementWithText(
-                                              const String &elName,
-                                              const String &text
-                                              )
-    {
-      ElementPtr tmp = Element::create(elName);
+      BYTE staticBuffer[256];
+      char staticOutputBuffer[sizeof(staticBuffer) + 1];
 
-      if (text.isEmpty()) return tmp;
+      std::unique_ptr<BYTE[]> allocatedBuffer;
+      std::unique_ptr<char[]> allocatedOutputBuffer;
 
-      TextPtr tmpTxt = Text::create();
-      tmpTxt->setValue(text, Text::Format_JSONStringEncoded);
-
-      tmp->adoptAsFirstChild(tmpTxt);
-
-      return tmp;
-    }
-
-    //-----------------------------------------------------------------------
-    ElementPtr IHelper::createElementWithNumber(
-                                                const String &elName,
-                                                const String &numberAsStringValue
-                                                )
-    {
-      ElementPtr tmp = Element::create(elName);
-
-      if (numberAsStringValue.isEmpty()) {
-        TextPtr tmpTxt = Text::create();
-        tmpTxt->setValue("0", Text::Format_JSONNumberEncoded);
-        tmp->adoptAsFirstChild(tmpTxt);
-        return tmp;
+      BYTE *buffer = &(staticBuffer[0]);
+      char *output = &(staticOutputBuffer[0]);
+      if (lengthInChars > sizeof(staticBuffer)) {
+        // use the allocated buffer instead
+        allocatedBuffer = std::unique_ptr<BYTE[]>(new BYTE[lengthInChars]);
+        allocatedOutputBuffer = std::unique_ptr<char[]>(new char[lengthInChars + 1]);
+        buffer = allocatedBuffer.get();
+        output = allocatedOutputBuffer.get();
       }
 
-      TextPtr tmpTxt = Text::create();
-      tmpTxt->setValue(numberAsStringValue, Text::Format_JSONNumberEncoded);
-      tmp->adoptAsFirstChild(tmpTxt);
+      AutoSeededRandomPool rng;
+      rng.GenerateBlock(&(buffer[0]), lengthInChars);
 
-      return tmp;
+      memset(&(output[0]), 0, sizeof(char)*(lengthInChars + 1));
+
+      for (size_t loop = 0; loop < lengthInChars; ++loop) {
+        output[loop] = randomCharArray[((buffer[loop]) % randomSize)];
+      }
+      return String((CSTR)(&(output[0])));
     }
 
-    //-----------------------------------------------------------------------
-    ElementPtr IHelper::createElementWithTime(
-      const String &elName,
-      Time time
-    )
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::random(size_t lengthInBytes)
     {
-      return createElementWithNumber(elName, IHelper::timeToString(time));
+      SecureByteBlockPtr output(make_shared<SecureByteBlock>());
+      AutoSeededRandomPool rng;
+      output->CleanNew(lengthInBytes);
+      rng.GenerateBlock(*output, lengthInBytes);
+      return output;
     }
 
-    //-----------------------------------------------------------------------
-    ElementPtr IHelper::createElementWithTextAndJSONEncode(
-                                                           const String &elName,
-                                                           const String &textVal
-                                                           )
+    //-------------------------------------------------------------------------
+    size_t IHelper::random(size_t minValue, size_t maxValue)
     {
-      ElementPtr tmp = Element::create(elName);
-      if (textVal.isEmpty()) return tmp;
+      ZS_THROW_INVALID_ARGUMENT_IF(minValue > maxValue)
+        if (minValue == maxValue) return minValue;
 
-      TextPtr tmpTxt = Text::create();
-      tmpTxt->setValueAndJSONEncode(textVal);
-      tmp->adoptAsFirstChild(tmpTxt);
-      return tmp;
+      auto range = (maxValue - minValue) + 1;
+
+      decltype(range) value = 0;
+
+      AutoSeededRandomPool rng;
+      rng.GenerateBlock((BYTE *)&value, sizeof(value));
+
+      value = minValue + (value % range);
+
+      return value;
     }
 
-    //-----------------------------------------------------------------------
-    String IHelper::timeToString(const Time &value)
-    {
-      if (Time() == value) return String();
-      return string(value);
-    }
 
-    //-----------------------------------------------------------------------
-    Time IHelper::stringToTime(const String &str)
+    //-------------------------------------------------------------------------
+    int IHelper::compare(
+                         const SecureByteBlock &left,
+                         const SecureByteBlock &right
+                         )
     {
-      if (str.isEmpty()) return Time();
-      if ("0" == str) return Time();
+      SecureByteBlock::size_type minSize = left.SizeInBytes();
+      minSize = (right.SizeInBytes() < minSize ? right.SizeInBytes() : minSize);
 
-      try {
-        return Numeric<Time>(str);
-      } catch (const Numeric<Time>::ValueOutOfRange &) {
-        ZS_LOG_WARNING(Detail, internal::Helper::slog("unable to convert value to time") + ZS_PARAM("value", str))
+      int result = 0;
+
+      if (0 != minSize) {
+        result = memcmp(left, right, minSize);
+        if (0 != result) return result;
       }
 
-      return Time();
+      // they are equal values up to the min size so compare sizes now
+
+      if (left.SizeInBytes() < right.SizeInBytes()) {
+        return -1;
+      }
+      if (right.SizeInBytes() < left.SizeInBytes()) {
+        return 1;
+      }
+      return 0;
     }
 
-    //-----------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    bool IHelper::isEmpty(SecureByteBlockPtr buffer)
+    {
+      if (!buffer) return true;
+      return (buffer->SizeInBytes() < 1);
+    }
+
+    //-------------------------------------------------------------------------
+    bool IHelper::isEmpty(const SecureByteBlock &buffer)
+    {
+      return (buffer.SizeInBytes() < 1);
+    }
+
+    //-------------------------------------------------------------------------
+    bool IHelper::hasData(SecureByteBlockPtr buffer)
+    {
+      if (!buffer) return false;
+      return (buffer->SizeInBytes() > 0);
+    }
+
+    //-------------------------------------------------------------------------
+    bool IHelper::hasData(const SecureByteBlock &buffer)
+    {
+      return (buffer.SizeInBytes() > 0);
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::clone(SecureByteBlockPtr pBuffer)
+    {
+      if (!pBuffer) return SecureByteBlockPtr();
+      return IHelper::clone(*pBuffer);
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::clone(const SecureByteBlock &buffer)
+    {
+      SecureByteBlockPtr pBuffer(make_shared<SecureByteBlock>());
+      SecureByteBlock::size_type size = buffer.SizeInBytes();
+      if (size < 1) return pBuffer;
+      pBuffer->CleanNew(size);
+
+      memcpy(pBuffer->BytePtr(), buffer.BytePtr(), size);
+      return pBuffer;
+    }
+
+    //-------------------------------------------------------------------------
     String IHelper::convertToString(const SecureByteBlock &buffer)
     {
       if (buffer.size() < 1) return String();
       return (const char *)(buffer.BytePtr());  // return buffer cast as const char *
     }
 
-    //-----------------------------------------------------------------------
-    SecureByteBlockPtr IHelper::convertToBuffer(const String &str)
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertToBuffer(const char *input)
     {
-      if (str.isEmpty()) return SecureByteBlockPtr();
+      if (NULL == input) return SecureByteBlockPtr();
+
+      SecureByteBlockPtr output(make_shared<SecureByteBlock>());
+      size_t len = strlen(input);
+      if (len < 1) return output;
+
+      output->CleanNew(sizeof(char)*len);
+
+      memcpy(*output, input, sizeof(char)*len);
+      return output;
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertToBuffer(const std::string &str)
+    {
+      if (str.size() < 1) return SecureByteBlockPtr();
       auto result(make_shared<SecureByteBlock>(str.length()));
       memcpy(result->BytePtr(), str.c_str(), str.length());
       return result;
     }
 
-    //-----------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertToBuffer(
+                                                const BYTE *buffer,
+                                                size_t bufferLengthInBytes
+                                                )
+    {
+      SecureByteBlockPtr output(make_shared<SecureByteBlock>());
+
+      if (bufferLengthInBytes < 1) return output;
+
+      output->CleanNew(bufferLengthInBytes);
+      memcpy(*output, buffer, bufferLengthInBytes);
+      return output;
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertToBuffer(
+                                                const std::unique_ptr<char[]> &arrayStr,
+                                                size_t lengthInChars,
+                                                bool wipeOriginal
+                                                )
+    {
+      if (!arrayStr.get()) return convertToBuffer((const BYTE *)NULL, 0);
+
+      if (SIZE_MAX == lengthInChars) {
+        lengthInChars = strlen(arrayStr.get());
+      }
+
+      SecureByteBlockPtr result = convertToBuffer((const BYTE *)(arrayStr.get()), lengthInChars);
+      if (wipeOriginal) {
+        memset(arrayStr.get(), 0, lengthInChars * sizeof(char));
+      }
+      return result;
+    }
+
+    //-------------------------------------------------------------------------
+    String IHelper::convertToBase64(
+                                    const BYTE *buffer,
+                                    size_t bufferLengthInBytes
+                                    )
+    {
+      internal::CryptoPPHelper::singleton();
+
+      String result;
+      Base64Encoder encoder(new StringSink(result), false);
+      encoder.Put(buffer, bufferLengthInBytes);
+      encoder.MessageEnd();
+      return result;
+    }
+
+    //-------------------------------------------------------------------------
+    String IHelper::convertToBase64(const String &input)
+    {
+      if (input.isEmpty()) return String();
+      return IHelper::convertToBase64((const BYTE *)(input.c_str()), input.length());
+    }
+
+    //-------------------------------------------------------------------------
+    String IHelper::convertToBase64(const SecureByteBlock &input)
+    {
+      if (input.size() < 1) return String();
+      return IHelper::convertToBase64(input, input.size());
+    }
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertFromBase64(const String &input)
+    {
+      internal::CryptoPPHelper::singleton();
+
+      SecureByteBlockPtr output(make_shared<SecureByteBlock>());
+
+      ByteQueue queue;
+      queue.Put((BYTE *)input.c_str(), input.size());
+
+      ByteQueue *outputQueue = new ByteQueue;
+      Base64Decoder decoder(outputQueue);
+      queue.CopyTo(decoder);
+      decoder.MessageEnd();
+
+      size_t outputLengthInBytes = (size_t)outputQueue->CurrentSize();
+
+      if (outputLengthInBytes < 1) return output;
+
+      output->CleanNew(outputLengthInBytes);
+
+      outputQueue->Get(*output, outputLengthInBytes);
+      return output;
+    }
+
+    //-------------------------------------------------------------------------
     String IHelper::convertToHex(
                                  const BYTE *buffer,
                                  size_t bufferLengthInBytes,
@@ -324,13 +555,45 @@ namespace zsLib
       return result;
     }
 
-    //-----------------------------------------------------------------------
+    //-------------------------------------------------------------------------
     String IHelper::convertToHex(
                                  const SecureByteBlock &input,
                                  bool outputUpperCase
                                  )
     {
       return convertToHex(input, input.size(), outputUpperCase);
+    }
+
+
+    //-------------------------------------------------------------------------
+    SecureByteBlockPtr IHelper::convertFromHex(const String &input)
+    {
+      SecureByteBlockPtr output(make_shared<SecureByteBlock>());
+      ByteQueue queue;
+      queue.Put((BYTE *)input.c_str(), input.size());
+
+      ByteQueue *outputQueue = new ByteQueue;
+      HexDecoder decoder(outputQueue);
+      queue.CopyTo(decoder);
+      decoder.MessageEnd();
+
+      SecureByteBlock::size_type outputLengthInBytes = (SecureByteBlock::size_type)outputQueue->CurrentSize();
+      if (outputLengthInBytes < 1) return output;
+
+      output->CleanNew(outputLengthInBytes);
+
+      outputQueue->Get(*output, outputLengthInBytes);
+      return output;
+    }
+
+    //-------------------------------------------------------------------------
+    String IHelper::getDebugString(
+                                   const SecureByteBlock &buffer,
+                                   size_t bytesPerGroup,
+                                   size_t maxLineLength
+                                   )
+    {
+      return zsLib::IHelper::getDebugString(buffer.BytePtr(), buffer.SizeInBytes(), bytesPerGroup, maxLineLength);
     }
 
   } // namespace eventing

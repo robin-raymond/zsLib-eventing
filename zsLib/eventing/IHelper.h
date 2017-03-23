@@ -32,13 +32,23 @@ either expressed or implied, of the FreeBSD Project.
 #pragma once
 
 #include <zsLib/eventing/types.h>
+#include <zsLib/IHelper.h>
+
+#ifdef _WIN32
+#include <intsafe.h>
+#endif //_WIN32
 
 namespace zsLib
 {
   namespace eventing
   {
-    interaction IHelper
+    interaction IHelper : public zsLib::IHelper
     {
+      static void setup();
+#ifdef WINRT
+      static void setup(Windows::UI::Core::CoreDispatcher ^dispatcher);
+#endif //WINRT
+
       static SecureByteBlockPtr loadFile(const char *path) throw (StdError);
       static void saveFile(const char *path, SecureByteBlock &buffer) throw (StdError);
       static ElementPtr read(const SecureByteBlockPtr buffer);
@@ -47,32 +57,56 @@ namespace zsLib
                                           const Document &doc,
                                           bool prettyPrint = true
                                           );
+      static SecureByteBlockPtr writeJSON(
+                                          DocumentPtr doc,
+                                          bool prettyPrint = true
+                                          );
       static SecureByteBlockPtr writeXML(const Document &doc);
+      static SecureByteBlockPtr writeXML(DocumentPtr doc);
 
-      static String getElementText(const ElementPtr &el);
-      static String getElementTextAndDecode(const ElementPtr &el);
-      static ElementPtr createElementWithText(
-                                              const String &elName,
-                                              const String &text
-                                              );
-      static ElementPtr createElementWithNumber(
-                                                const String &elName,
-                                                const String &numberAsStringValue
-                                                );
-      static ElementPtr createElementWithTime(
-                                              const String &elName,
-                                              Time time
-                                              );
+      static String randomString(size_t lengthInChars);
 
-      static ElementPtr createElementWithTextAndJSONEncode(
-                                                           const String &elName,
-                                                           const String &textVal
-                                                           );
-      static String timeToString(const Time &value);
-      static Time stringToTime(const String &str);
+      static SecureByteBlockPtr random(size_t lengthInBytes);
+
+      static size_t random(size_t minValue, size_t maxValue);
+
+      static int compare(
+                         const SecureByteBlock &left,
+                         const SecureByteBlock &right
+                         );
+
+      static bool isEmpty(SecureByteBlockPtr buffer);
+      static bool isEmpty(const SecureByteBlock &buffer);
+
+      static bool hasData(SecureByteBlockPtr buffer);
+      static bool hasData(const SecureByteBlock &buffer);
+
+      static SecureByteBlockPtr clone(SecureByteBlockPtr pBuffer);
+      static SecureByteBlockPtr clone(const SecureByteBlock &buffer);
 
       static String convertToString(const SecureByteBlock &buffer);
-      static SecureByteBlockPtr convertToBuffer(const String &str);
+      static SecureByteBlockPtr convertToBuffer(const char *input);
+      static SecureByteBlockPtr convertToBuffer(const std::string &input);
+      static SecureByteBlockPtr convertToBuffer(
+                                               const BYTE *buffer,
+                                               size_t bufferLengthInBytes
+                                               );
+      static SecureByteBlockPtr convertToBuffer(
+                                                const std::unique_ptr<char[]> &arrayStr,
+                                                size_t lengthInChars = SIZE_MAX,
+                                                bool wipeOriginal = true
+                                                );
+
+      static String convertToBase64(
+                                    const BYTE *buffer,
+                                    size_t bufferLengthInBytes
+                                    );
+
+      static String convertToBase64(const SecureByteBlock &input);
+
+      static String convertToBase64(const String &input);
+
+      static SecureByteBlockPtr convertFromBase64(const String &input);
 
       static String convertToHex(
                                  const BYTE *buffer,
@@ -84,6 +118,14 @@ namespace zsLib
                                  const SecureByteBlock &input,
                                  bool outputUpperCase = false
                                  );
+
+      static SecureByteBlockPtr convertFromHex(const String &input);
+
+      static String getDebugString(
+                                   const SecureByteBlock &buffer,
+                                   size_t bytesPerGroup = 4,
+                                   size_t maxLineLength = 160
+                                   );
     };
   }
 }

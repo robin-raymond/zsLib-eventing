@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0058FDDE1E1553E5007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0058FDDD1E1553E5007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */; };
 		008698A31DE3F543009D669C /* zsLib_eventing_tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698911DE3F543009D669C /* zsLib_eventing_tool.cpp */; };
 		008698A41DE3F543009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698921DE3F543009D669C /* zsLib_eventing_tool_CommandLine.cpp */; };
-		008698A51DE3F543009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008698931DE3F543009D669C /* zsLib_eventing_tool_Compiler.cpp */; settings = {COMPILER_FLAGS = "-Wno-documentation"; }; };
+		009CEEE61DF3A0B1000FF4D2 /* zsLib_eventing_tool_Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 009CEEE51DF3A0B1000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,19 +26,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0058FDDD1E1553E5007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_EventingCompiler.cpp; sourceTree = "<group>"; };
+		0058FDDF1E1553F3007548F6 /* zsLib_eventing_tool_EventingCompiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_EventingCompiler.h; sourceTree = "<group>"; };
 		008698731DE3F51F009D669C /* libzsLib-eventing-tool-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libzsLib-eventing-tool-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		008698911DE3F543009D669C /* zsLib_eventing_tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool.cpp; sourceTree = "<group>"; };
 		008698921DE3F543009D669C /* zsLib_eventing_tool_CommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_CommandLine.cpp; sourceTree = "<group>"; };
-		008698931DE3F543009D669C /* zsLib_eventing_tool_Compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Compiler.cpp; sourceTree = "<group>"; };
 		008698941DE3F543009D669C /* ICommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICommandLine.h; sourceTree = "<group>"; };
 		008698951DE3F543009D669C /* ICompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICompiler.h; sourceTree = "<group>"; };
 		008698971DE3F543009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		008698981DE3F543009D669C /* zsLib_eventing_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool.h; sourceTree = "<group>"; };
 		008698991DE3F543009D669C /* zsLib_eventing_tool_CommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_CommandLine.h; sourceTree = "<group>"; };
-		0086989A1DE3F543009D669C /* zsLib_eventing_tool_Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Compiler.h; sourceTree = "<group>"; };
 		0086989B1DE3F543009D669C /* OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStream.h; sourceTree = "<group>"; };
 		0086989C1DE3F543009D669C /* tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
 		0086989D1DE3F543009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		009CEEE51DF3A0B1000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Monitor.cpp; sourceTree = "<group>"; };
+		009CEEE71DF3A0BD000FF4D2 /* zsLib_eventing_tool_Monitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Monitor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +91,9 @@
 			isa = PBXGroup;
 			children = (
 				008698901DE3F543009D669C /* cpp */,
+				008698961DE3F543009D669C /* internal */,
 				008698941DE3F543009D669C /* ICommandLine.h */,
 				008698951DE3F543009D669C /* ICompiler.h */,
-				008698961DE3F543009D669C /* internal */,
 				0086989B1DE3F543009D669C /* OutputStream.h */,
 				0086989C1DE3F543009D669C /* tool.h */,
 				0086989D1DE3F543009D669C /* types.h */,
@@ -103,7 +106,8 @@
 			children = (
 				008698911DE3F543009D669C /* zsLib_eventing_tool.cpp */,
 				008698921DE3F543009D669C /* zsLib_eventing_tool_CommandLine.cpp */,
-				008698931DE3F543009D669C /* zsLib_eventing_tool_Compiler.cpp */,
+				0058FDDD1E1553E5007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */,
+				009CEEE51DF3A0B1000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */,
 			);
 			path = cpp;
 			sourceTree = "<group>";
@@ -114,7 +118,8 @@
 				008698971DE3F543009D669C /* types.h */,
 				008698981DE3F543009D669C /* zsLib_eventing_tool.h */,
 				008698991DE3F543009D669C /* zsLib_eventing_tool_CommandLine.h */,
-				0086989A1DE3F543009D669C /* zsLib_eventing_tool_Compiler.h */,
+				0058FDDF1E1553F3007548F6 /* zsLib_eventing_tool_EventingCompiler.h */,
+				009CEEE71DF3A0BD000FF4D2 /* zsLib_eventing_tool_Monitor.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -176,9 +181,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				008698A51DE3F543009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */,
 				008698A41DE3F543009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */,
 				008698A31DE3F543009D669C /* zsLib_eventing_tool.cpp in Sources */,
+				009CEEE61DF3A0B1000FF4D2 /* zsLib_eventing_tool_Monitor.cpp in Sources */,
+				0058FDDE1E1553E5007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,6 +330,7 @@
 				0086987E1DE3F51F009D669C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

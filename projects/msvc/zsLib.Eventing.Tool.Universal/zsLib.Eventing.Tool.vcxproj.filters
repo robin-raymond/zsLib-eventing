@@ -33,9 +33,6 @@
     <ClInclude Include="..\..\..\zsLib\eventing\tool\ICommandLine.h">
       <Filter>zsLib\eventing\tool</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Compiler.h">
-      <Filter>zsLib\eventing\tool\internal</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\types.h">
       <Filter>zsLib\eventing\tool\internal</Filter>
     </ClInclude>
@@ -45,15 +42,36 @@
     <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_CommandLine.h">
       <Filter>zsLib\eventing\tool\internal</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Monitor.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_EventingCompiler.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_IDLCompiler.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Helper.h">
+      <Filter>zsLib\eventing\tool\internal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_CommandLine.cpp">
       <Filter>zsLib\eventing\tool\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Compiler.cpp">
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool.cpp">
       <Filter>zsLib\eventing\tool\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool.cpp">
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Monitor.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_EventingCompiler.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Helper.cpp">
+      <Filter>zsLib\eventing\tool\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_IDLCompiler.cpp">
       <Filter>zsLib\eventing\tool\cpp</Filter>
     </ClCompile>
   </ItemGroup>

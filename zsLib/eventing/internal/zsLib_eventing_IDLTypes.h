@@ -31,10 +31,11 @@ either expressed or implied, of the FreeBSD Project.
 
 #pragma once
 
-#include <zsLib/eventing/tool/tool.h>
+#include <zsLib/eventing/IIDLTypes.h>
 
-#include <zsLib/eventing/tool/internal/types.h>
-#include <zsLib/eventing/tool/internal/zsLib_eventing_tool_CommandLine.h>
-#include <zsLib/eventing/tool/internal/zsLib_eventing_tool_EventingCompiler.h>
-#include <zsLib/eventing/tool/internal/zsLib_eventing_tool_IDLCompiler.h>
-#include <zsLib/eventing/tool/internal/zsLib_eventing_tool_Monitor.h>
+namespace zsLib
+{
+  namespace eventing
+  {
+  }
+}

@@ -48,34 +48,34 @@ namespace zsLib
         //---------------------------------------------------------------------
         //---------------------------------------------------------------------
         #pragma mark
-        #pragma mark Compiler
+        #pragma mark EventingCompiler
         #pragma mark
 
-        class Compiler : public ICompiler
+        class EventingCompiler : public ICompiler
         {
           struct make_private {};
 
         public:
           //-------------------------------------------------------------------
-          Compiler(
-                  const make_private &,
-                  const Config &config
-                  );
-          ~Compiler();
+          EventingCompiler(
+                           const make_private &,
+                           const Config &config
+                           );
+          ~EventingCompiler();
 
           //-------------------------------------------------------------------
           #pragma mark
-          #pragma mark Compiler => ICompiler
+          #pragma mark EventingCompiler => ICompiler
           #pragma mark
 
-          static CompilerPtr create(const Config &config);
+          static EventingCompilerPtr create(const Config &config);
 
           virtual void process() throw (Failure, FailureWithLine);
 
         protected:
           //-------------------------------------------------------------------
           #pragma mark
-          #pragma mark Compiler => (internal)
+          #pragma mark EventingCompiler => (internal)
           #pragma mark
 
           void outputMacros();
@@ -102,10 +102,10 @@ namespace zsLib
         private:
           //-------------------------------------------------------------------
           #pragma mark
-          #pragma mark Compiler => (data)
+          #pragma mark EventingCompiler => (data)
           #pragma mark
 
-          CompilerWeakPtr mThisWeak;
+          EventingCompilerWeakPtr mThisWeak;
 
           Config mConfig;
         };

@@ -9,3 +9,15 @@ ipch/
 xcshareddata/
 xcuserdata/
 *.xcuserdatad/
+
+# linux / codelite
+.codelite/
+.build-debug/
+.build-release/
+projects/linux/codelite/Makefile
+projects/linux/codelite/zsLib-eventing/*.mk
+projects/linux/codelite/zsLib-eventing/*.txt
+projects/linux/codelite/zsLib-eventing-tool/*.mk
+projects/linux/codelite/zsLib-eventing-tool/*.txt
+projects/linux/codelite/zsLib-eventing-tool-compiler/*.mk
+projects/linux/codelite/zsLib-eventing-tool-compiler/*.txt

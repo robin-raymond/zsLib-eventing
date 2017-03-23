@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="zsLib-eventing-tool-compiler" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00020001N0005Debug0000000000000001N0007Release000000000000]]>
+    </Plugin>
+  </Plugins>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="zsLib">
+    <VirtualDirectory Name="cpp">
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib.events.json" ExcludeProjConfig="Debug"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Event.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Exception.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Helper.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_IPAddress.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Log.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueue.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueManager.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThread.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadBasic.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadPool.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadUsingBlackberryChannels.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadUsingCurrentGUIMessageQueueForWinRT.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadUsingCurrentGUIMessageQueueForWindows.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_MessageQueueThreadUsingMainThreadMessageQueueForApple.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Numeric.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Promise.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Proxy.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Settings.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Singleton.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Socket.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_SocketMonitor.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_String.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Stringize.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_Timer.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_TimerMonitor.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_WindowsEventProviderLogger.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XML.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLAttribute.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLComment.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLDeclaration.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLDocument.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLElement.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLGenerator.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLNode.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLParser.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLParserPos.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLParserWarningTypes.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLText.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_XMLUnknown.cpp"/>
+      <File Name="../../../../../zsLib/zsLib/cpp/zsLib_helpers.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="internal">
+      <File Name="../../../../../zsLib/zsLib/internal/platform.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/types.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib.events.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib.events.jman"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib.events_win.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib.events_win_etw.man"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib.events_win_etw.wprp"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Event.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Exception.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Helper.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_IPAddress.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Log.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueue.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueManager.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThread.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadBasic.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadPool.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadUsingBlackberryChannels.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadUsingCurrentGUIMessageQueueForWinRT.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadUsingCurrentGUIMessageQueueForWindows.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_MessageQueueThreadUsingMainThreadMessageQueueForApple.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Numeric.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Promise.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Proxy.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_ProxyPack.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_ProxySubscriptions.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Settings.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Singleton.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Socket.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_SocketMonitor.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Stringize.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_TearAway.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_Timer.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_TimerMonitor.h"/>
+      <File Name="../../../../../zsLib/zsLib/internal/zsLib_XML.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="extras">
+      <VirtualDirectory Name="win32">
+        <File Name="../../../../../zsLib/zsLib/extras/win32/strptime.cpp" ExcludeProjConfig="Debug;Release"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="uuid">
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/clear.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/compare.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/config.h"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/copy.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/gen_uuid.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/gen_uuid_nt.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/isnull.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/pack.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/parse.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/tst_uuid.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/unpack.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/unparse.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/uuid.h"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/uuidP.h"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/uuid_time.c" ExcludeProjConfig="Debug;Release"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/uuid_types.h"/>
+        <File Name="../../../../../zsLib/zsLib/extras/uuid/uuidd.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="eventing">
+      <VirtualDirectory Name="cpp">
+        <File Name="../../../../zsLib/eventing/cpp/zsLib_eventing.cpp"/>
+        <File Name="../../../../zsLib/eventing/cpp/zsLib_eventing_EventingTypes.cpp"/>
+        <File Name="../../../../zsLib/eventing/cpp/zsLib_eventing_Hasher.cpp"/>
+        <File Name="../../../../zsLib/eventing/cpp/zsLib_eventing_Helper.cpp"/>
+        <File Name="../../../../zsLib/eventing/cpp/zsLib_eventing_RemoteEventing.cpp"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="internal">
+        <File Name="../../../../zsLib/eventing/internal/types.h"/>
+        <File Name="../../../../zsLib/eventing/internal/zsLib_eventing_EventingTypes.h"/>
+        <File Name="../../../../zsLib/eventing/internal/zsLib_eventing_Hasher.h"/>
+        <File Name="../../../../zsLib/eventing/internal/zsLib_eventing_Helper.h"/>
+        <File Name="../../../../zsLib/eventing/internal/zsLib_eventing_RemoteEventing.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="tool">
+        <VirtualDirectory Name="internal">
+          <File Name="../../../../zsLib/eventing/tool/internal/types.h"/>
+          <File Name="../../../../zsLib/eventing/tool/internal/zsLib_eventing_tool.h"/>
+          <File Name="../../../../zsLib/eventing/tool/internal/zsLib_eventing_tool_CommandLine.h"/>
+          <File Name="../../../../zsLib/eventing/tool/internal/zsLib_eventing_tool_Compiler.h"/>
+          <File Name="../../../../zsLib/eventing/tool/internal/zsLib_eventing_tool_Monitor.h"/>
+        </VirtualDirectory>
+        <VirtualDirectory Name="cpp">
+          <File Name="../../../../zsLib/eventing/tool/cpp/zsLib_eventing_tool.cpp"/>
+          <File Name="../../../../zsLib/eventing/tool/cpp/zsLib_eventing_tool_CommandLine.cpp"/>
+          <File Name="../../../../zsLib/eventing/tool/cpp/zsLib_eventing_tool_Compiler.cpp"/>
+          <File Name="../../../../zsLib/eventing/tool/cpp/zsLib_eventing_tool_Monitor.cpp"/>
+        </VirtualDirectory>
+        <File Name="../../../../zsLib/eventing/tool/ICommandLine.h"/>
+        <File Name="../../../../zsLib/eventing/tool/ICompiler.h"/>
+        <File Name="../../../../zsLib/eventing/tool/OutputStream.h"/>
+        <File Name="../../../../zsLib/eventing/tool/tool.h"/>
+        <File Name="../../../../zsLib/eventing/tool/types.h"/>
+      </VirtualDirectory>
+      <File Name="../../../../../zsLib/zsLib/eventing/EventTypes.h"/>
+      <File Name="../../../../../zsLib/zsLib/eventing/Log.h"/>
+      <File Name="../../../../../zsLib/zsLib/eventing/noop.h"/>
+      <File Name="../../../../zsLib/eventing/IEventingTypes.h"/>
+      <File Name="../../../../zsLib/eventing/IHasher.h"/>
+      <File Name="../../../../zsLib/eventing/IHelper.h"/>
+      <File Name="../../../../zsLib/eventing/IRemoteEventing.h"/>
+      <File Name="../../../../zsLib/eventing/eventing.h"/>
+      <File Name="../../../../zsLib/eventing/types.h"/>
+    </VirtualDirectory>
+    <File Name="../../../../../zsLib/zsLib/Event.h"/>
+    <File Name="../../../../../zsLib/zsLib/Exception.h"/>
+    <File Name="../../../../../zsLib/zsLib/IFactory.h"/>
+    <File Name="../../../../../zsLib/zsLib/IHelper.h"/>
+    <File Name="../../../../../zsLib/zsLib/IMessageQueue.h"/>
+    <File Name="../../../../../zsLib/zsLib/IMessageQueueManager.h"/>
+    <File Name="../../../../../zsLib/zsLib/IMessageQueueThread.h"/>
+    <File Name="../../../../../zsLib/zsLib/IMessageQueueThreadPool.h"/>
+    <File Name="../../../../../zsLib/zsLib/IPAddress.h"/>
+    <File Name="../../../../../zsLib/zsLib/ISettings.h"/>
+    <File Name="../../../../../zsLib/zsLib/ITimer.h"/>
+    <File Name="../../../../../zsLib/zsLib/IWakeDelegate.h"/>
+    <File Name="../../../../../zsLib/zsLib/Log.h"/>
+    <File Name="../../../../../zsLib/zsLib/MessageQueueAssociator.h"/>
+    <File Name="../../../../../zsLib/zsLib/Numeric.h"/>
+    <File Name="../../../../../zsLib/zsLib/Promise.h"/>
+    <File Name="../../../../../zsLib/zsLib/Proxy.h"/>
+    <File Name="../../../../../zsLib/zsLib/ProxySubscriptions.h"/>
+    <File Name="../../../../../zsLib/zsLib/SafeInt.h"/>
+    <File Name="../../../../../zsLib/zsLib/Singleton.h"/>
+    <File Name="../../../../../zsLib/zsLib/Socket.h"/>
+    <File Name="../../../../../zsLib/zsLib/String.h"/>
+    <File Name="../../../../../zsLib/zsLib/Stringize.h"/>
+    <File Name="../../../../../zsLib/zsLib/TearAway.h"/>
+    <File Name="../../../../../zsLib/zsLib/WeightedMovingAverage.h"/>
+    <File Name="../../../../../zsLib/zsLib/XML.h"/>
+    <File Name="../../../../../zsLib/zsLib/date.h"/>
+    <File Name="../../../../../zsLib/zsLib/helpers.h"/>
+    <File Name="../../../../../zsLib/zsLib/license.txt"/>
+    <File Name="../../../../../zsLib/zsLib/types.h"/>
+    <File Name="../../../../../zsLib/zsLib/zsLib.h"/>
+  </VirtualDirectory>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-std=c++11;-Wall;-Wno-unknown-pragmas;-Wno-unused-local-typedefs;-Wno-pragmas" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+        <IncludePath Value="../../../.."/>
+        <IncludePath Value="../../../../../zsLib"/>
+        <IncludePath Value="../../../../.."/>
+        <Preprocessor Value="ZSLIB_EVENTING_NOOP"/>
+      </Compiler>
+      <Linker Options="" Required="yes">
+        <LibraryPath Value="../../../../../cryptopp/projects/linux/codelite/cryptopp/$(IntermediateDirectory)"/>
+        <Library Value="uuid"/>
+        <Library Value="pthread"/>
+        <Library Value="cryptopp"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="/home/robin/Documents/dialpad/sfu/ortc/xplatform/zsLib-eventing/projects/linux/codelite/zsLib-eventing-tool-compiler/Debug/zsLib-eventing-tool-compiler" CommandArguments="-c services.events.json -o ../internal/services.events" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="/home/robin/Documents/dialpad/sfu/ortc/xplatform/ortclib-services-cpp/ortc/services/cpp" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-std=c++11;-Wall;-Wno-unknown-pragmas;-Wno-unused-local-typedefs;-Wno-pragmas" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+        <IncludePath Value="../../../.."/>
+        <IncludePath Value="../../../../../zsLib"/>
+        <IncludePath Value="../../../../.."/>
+        <Preprocessor Value="NDEBUG"/>
+        <Preprocessor Value="ZSLIB_EVENTING_NOOP"/>
+      </Compiler>
+      <Linker Options="" Required="yes">
+        <LibraryPath Value="../../../../../cryptopp/projects/linux/codelite/cryptopp/$(IntermediateDirectory)"/>
+        <Library Value="uuid"/>
+        <Library Value="pthread"/>
+        <Library Value="cryptopp"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <BuildSystem Name="Default"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Debug">
+    <Project Name="cryptopp"/>
+  </Dependencies>
+  <Dependencies Name="Release">
+    <Project Name="cryptopp"/>
+  </Dependencies>
+</CodeLite_Project>

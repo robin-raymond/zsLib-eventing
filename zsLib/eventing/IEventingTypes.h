@@ -53,10 +53,12 @@ namespace zsLib
       ZS_DECLARE_STRUCT_PTR(Typedef);
       ZS_DECLARE_STRUCT_PTR(Channel);
       ZS_DECLARE_STRUCT_PTR(Task);
+      ZS_DECLARE_STRUCT_PTR(Keyword);
       ZS_DECLARE_STRUCT_PTR(OpCode);
       ZS_DECLARE_STRUCT_PTR(DataTemplate);
       ZS_DECLARE_STRUCT_PTR(DataType);
       ZS_DECLARE_STRUCT_PTR(Event);
+      ZS_DECLARE_STRUCT_PTR(Subsystem);
 
       typedef String ChannelID;
       typedef std::map<ChannelID, ChannelPtr> ChannelMap;
@@ -66,18 +68,24 @@ namespace zsLib
       typedef std::map<Name, TaskPtr> TaskMap;
       ZS_DECLARE_PTR(TaskMap);
 
+      typedef std::map<Name, KeywordPtr> KeywordMap;
+      ZS_DECLARE_PTR(KeywordMap);
+
       typedef std::map<Name, OpCodePtr> OpCodeMap;
       ZS_DECLARE_PTR(OpCodeMap);
 
       typedef String TypedefName;
       typedef std::map<TypedefName, TypedefPtr> TypedefMap;
-
+      
       typedef String AliasName;
       typedef String AliasValue;
       typedef std::map<String, String> AliasMap;
 
       typedef String EventName;
       typedef std::map<EventName, EventPtr> EventMap;
+
+      typedef String SubsystemName;
+      typedef std::map<SubsystemName, SubsystemPtr> SubsystemMap;
 
       typedef String Hash;
       typedef std::map<Hash, DataTemplatePtr> DataTemplateMap;
@@ -161,7 +169,7 @@ namespace zsLib
 
       //-----------------------------------------------------------------------
       #pragma mark
-      #pragma mark IEventingTypes::BaseTypedefs
+      #pragma mark IEventingTypes::BaseTypes
       #pragma mark
 
       enum BaseTypes
@@ -189,8 +197,10 @@ namespace zsLib
       enum PredefinedTypedefs
       {
         PredefinedTypedef_First,
+        
+        PredefinedTypedef_void = PredefinedTypedef_First,
 
-        PredefinedTypedef_bool = PredefinedTypedef_First,
+        PredefinedTypedef_bool,
 
         PredefinedTypedef_uchar,
         PredefinedTypedef_char,
@@ -250,6 +260,8 @@ namespace zsLib
       static BaseTypes getBaseType(PredefinedTypedefs type);
       static bool isSigned(PredefinedTypedefs type);
       static bool isUnsigned(PredefinedTypedefs type);
+      static bool isAString(PredefinedTypedefs type);
+      static bool isWString(PredefinedTypedefs type);
       static size_t getMinBytes(PredefinedTypedefs type);
       static size_t getMaxBytes(PredefinedTypedefs type);
 
@@ -275,8 +287,10 @@ namespace zsLib
         ChannelMap mChannels;
         OpCodeMap mOpCodes;
         TaskMap mTasks;
+        KeywordMap mKeywords;
         EventMap mEvents;
         DataTemplateMap mDataTemplates;
+        SubsystemMap mSubsystems;
 
         Provider() {}
         Provider(const ElementPtr &rootEl) throw (InvalidContent);
@@ -401,6 +415,40 @@ namespace zsLib
 
       //-----------------------------------------------------------------------
       #pragma mark
+      #pragma mark IEventingTypes::Keyword
+      #pragma mark
+      
+      struct Keyword
+      {
+        Name      mName;
+
+        uint64_t  mMask {};
+
+        Keyword() {}
+        Keyword(
+                const ElementPtr &rootEl,
+                const AliasMap *aliases = NULL
+                ) throw (InvalidContent);
+
+        static KeywordPtr create() { return make_shared<Keyword>(); }
+        static KeywordPtr create(
+                                 const ElementPtr &el,
+                                 const AliasMap *aliases = NULL
+                                 ) { if (!el) return KeywordPtr(); return make_shared<Keyword>(el, aliases); }
+
+        ElementPtr createElement(const char *objectName = NULL) const;
+
+        String hash() const;
+      };
+
+      static void createKeywords(
+                                 ElementPtr tasksEl,
+                                 KeywordMap &outKeywords,
+                                 const AliasMap *aliases = NULL
+                                 ) throw (InvalidContent);
+
+      //-----------------------------------------------------------------------
+      #pragma mark
       #pragma mark IEventingTypes::OpCode
       #pragma mark
 
@@ -451,6 +499,7 @@ namespace zsLib
         TaskPtr         mTask;
         OpCodePtr       mOpCode;
         DataTemplatePtr mDataTemplate;
+        KeywordMap      mKeywords;
 
         size_t          mValue {};
 
@@ -475,8 +524,9 @@ namespace zsLib
                                ElementPtr eventsEl,
                                EventMap &outEvents,
                                const ChannelMap &channels,
-                               const OpCodeMap &opCodes,
+                               OpCodeMap &opCodes,
                                const TaskMap &tasks,
+                               const KeywordMap &keywords,
                                const DataTemplateMap &dataTemplates,
                                const AliasMap *aliases = NULL
                                ) throw (InvalidContent);
@@ -488,6 +538,7 @@ namespace zsLib
 
       struct DataTemplate
       {
+        String mID;
         DataTypeList mDataTypes;
 
         DataTemplate() {}
@@ -504,6 +555,7 @@ namespace zsLib
 
         ElementPtr createElement(const char *objectName = NULL) const;
 
+        String uniqueID() const;
         String hash() const;
       };
 
@@ -531,12 +583,12 @@ namespace zsLib
                  const AliasMap *aliases = NULL
                  ) throw (InvalidContent);
 
-          static DataTypePtr create() { return make_shared<DataType>(); }
-          static DataTypePtr create(
-                                  const ElementPtr &el,
-                                  const TypedefMap *typedefs = NULL,
-                                  const AliasMap *aliases = NULL
-                                  ) { if (!el) return DataTypePtr(); return make_shared<DataType>(el, typedefs, aliases); }
+        static DataTypePtr create() { return make_shared<DataType>(); }
+        static DataTypePtr create(
+                                const ElementPtr &el,
+                                const TypedefMap *typedefs = NULL,
+                                const AliasMap *aliases = NULL
+                                ) { if (!el) return DataTypePtr(); return make_shared<DataType>(el, typedefs, aliases); }
 
         ElementPtr createElement(const char *objectName = NULL) const;
 
@@ -549,6 +601,38 @@ namespace zsLib
                                   const TypedefMap &typedefs,
                                   const AliasMap *aliases = NULL
                                   ) throw (InvalidContent);
+      
+      //-----------------------------------------------------------------------
+      #pragma mark
+      #pragma mark IEventingTypes::DataType
+      #pragma mark
+      
+      struct Subsystem
+      {
+        SubsystemName mName;
+        Log::Level mLevel {Log::Level::Level_First};
+
+        Subsystem() {}
+        Subsystem(
+                  const ElementPtr &rootEl,
+                  const AliasMap *aliases = NULL
+                  ) throw (InvalidContent);
+        static SubsystemPtr create() { return make_shared<Subsystem>(); }
+        static SubsystemPtr create(
+                                   const ElementPtr &el,
+                                   const AliasMap *aliases = NULL
+                                   ) { if (!el) return SubsystemPtr(); return make_shared<Subsystem>(el, aliases); }
+
+        ElementPtr createElement(const char *objectName = NULL) const;
+
+        String hash() const;
+      };
+      
+      static void createSubsystems(
+                                   ElementPtr dataTypesEl,
+                                   SubsystemMap &outSubsystems,
+                                   const AliasMap *aliases = NULL
+                                   ) throw (InvalidContent);
     };
 
   } // namespace eventing

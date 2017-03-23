@@ -35,6 +35,9 @@ either expressed or implied, of the FreeBSD Project.
 #include <zsLib/eventing/tool/ICompiler.h>
 
 #include <zsLib/eventing/IEventingTypes.h>
+#include <zsLib/eventing/IRemoteEventing.h>
+
+#include <zsLib/IPAddress.h>
 
 namespace zsLib
 {
@@ -61,6 +64,7 @@ namespace zsLib
 
           Flag_None = Flag_First,
 
+          Flag_Quiet,
           Flag_Config,
           Flag_Question,
           Flag_Help,
@@ -68,12 +72,34 @@ namespace zsLib
           Flag_Source,
           Flag_OutputName,
           Flag_Author,
+          Flag_IDL,
+          Flag_Monitor,
+          Flag_MonitorPort,
+          Flag_MonitorIP,
+          Flag_MonitorTimeout,
+          Flag_MonitorJMAN,
+          Flag_MonitorJSON,
+          Flag_MonitorProvider,
+          Flag_MonitorSecret,
 
-          Flag_Last = Flag_Author,
+          Flag_Last = Flag_MonitorSecret,
         };
 
         static Flags toFlag(const char *str);
         static const char *toString(Flags flag);
+        
+        struct MonitorInfo
+        {
+          bool mMonitor {};
+          bool mQuietMode {};
+          IPAddress mIPAddress;
+          WORD mPort {IRemoteEventingTypes::Port_Default};
+          Seconds mTimeout {};
+          StringList mJMANFiles;
+          bool mOutputJSON {};
+          String mSecret;
+          StringList mSubscribeProviders;
+        };
       };
 
       //-----------------------------------------------------------------------
@@ -102,15 +128,22 @@ namespace zsLib
 
         static void prepare(
                             StringList arguments,
+                            MonitorInfo &outMonitor,
                             ICompilerTypes::Config &outConfig,
                             bool &outDidOutputHelp
                             ) throw (InvalidArgument);
 
         static void validate(
+                             MonitorInfo &monitor,
                              ICompilerTypes::Config &config,
                              bool didOutputHelp
                              ) throw (InvalidArgument, NoopException);
-        static void process(ICompilerTypes::Config &config) throw (Failure);
+        static void process(
+                            MonitorInfo &monitor,
+                            ICompilerTypes::Config &config
+                            ) throw (Failure);
+        
+        static void interrupt();
       };
 
     } // namespace tool

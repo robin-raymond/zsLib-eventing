@@ -34,6 +34,7 @@ either expressed or implied, of the FreeBSD Project.
 #include <zsLib/eventing/tool/types.h>
 
 #include <zsLib/eventing/IEventingTypes.h>
+#include <zsLib/eventing/IIDLTypes.h>
 
 namespace zsLib
 {
@@ -52,16 +53,47 @@ namespace zsLib
       interaction ICompilerTypes
       {
         ZS_DECLARE_TYPEDEF_PTR(IEventingTypes::Provider, Provider);
+        ZS_DECLARE_TYPEDEF_PTR(IIDLTypes::Project, Project);
+
+        enum Modes
+        {
+          Mode_First,
+          
+          Mode_Eventing = Mode_First,
+          Mode_IDL,
+          
+          Mode_Last = Mode_IDL,
+        };
+
+        static const char *toString(Modes value);
+        static Modes toMode(const char *value) throw (InvalidArgument);
+
+        enum IDLOutputs
+        {
+          IDLOutput_First,
+
+          IDLOutput_CX = IDLOutput_First,
+          IDLOutput_ObjectiveC,
+          IDLOutput_JavaAndroid,
+          
+          IDLOutput_Last = IDLOutput_JavaAndroid,
+        };
+
+        static const char *toString(IDLOutputs value);
+        static IDLOutputs toIDLOutput(const char *value) throw (InvalidArgument);
 
         struct Config
         {
-          String      mConfigFile;
+          Modes           mMode {Mode_First};
+          IDLOutputs  mIDLOutput {IDLOutput_First};
+          String          mConfigFile;
 
-          StringList  mSourceFiles;
-          String      mOutputName;
-          String      mAuthor;
+          StringList      mSourceFiles;
+          String          mOutputName;
+          String          mAuthor;
 
-          ProviderPtr mProvider;
+          ProviderPtr     mProvider;
+          ProjectPtr      mProject;
         };
       };
 

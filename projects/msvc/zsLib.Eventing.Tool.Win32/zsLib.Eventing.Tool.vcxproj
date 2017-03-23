@@ -24,7 +24,10 @@
     <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\types.h" />
     <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool.h" />
     <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_CommandLine.h" />
-    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Compiler.h" />
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_EventingCompiler.h" />
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Helper.h" />
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_IDLCompiler.h" />
+    <ClInclude Include="..\..\..\zsLib\eventing\tool\internal\zsLib_eventing_tool_Monitor.h" />
     <ClInclude Include="..\..\..\zsLib\eventing\tool\OutputStream.h" />
     <ClInclude Include="..\..\..\zsLib\eventing\tool\tool.h" />
     <ClInclude Include="..\..\..\zsLib\eventing\tool\types.h" />
@@ -32,7 +35,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool.cpp" />
     <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_CommandLine.cpp" />
-    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Compiler.cpp" />
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_EventingCompiler.cpp" />
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Helper.cpp" />
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_IDLCompiler.cpp" />
+    <ClCompile Include="..\..\..\zsLib\eventing\tool\cpp\zsLib_eventing_tool_Monitor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{E39B5144-3CFC-4431-ADA7-14C66DB794A4}</ProjectGuid>

@@ -48,8 +48,6 @@ namespace zsLib
   {
     ZS_DECLARE_TYPEDEF_PTR(eventing::IHelper, UseEventingHelper);
 
-    typedef CryptoPP::SHA256 SHA256;
-
     namespace internal
     {
     } // namespace internal
@@ -237,6 +235,8 @@ namespace zsLib
     {
       switch (type)
       {
+        case PredefinedTypedef_void:      return "void";
+
         case PredefinedTypedef_bool:      return "bool";
 
         case PredefinedTypedef_uchar:     return "uchar";
@@ -378,6 +378,7 @@ namespace zsLib
         case PredefinedTypedef_float32:
         case PredefinedTypedef_float64:   return BaseType_Float;
 
+        case PredefinedTypedef_void:
         case PredefinedTypedef_pointer:   return BaseType_Pointer;
 
         case PredefinedTypedef_binary:    return BaseType_Binary;
@@ -396,6 +397,7 @@ namespace zsLib
     {
       switch (type)
       {
+        case PredefinedTypedef_void:
         case PredefinedTypedef_bool:
 
         case PredefinedTypedef_uchar:
@@ -424,6 +426,29 @@ namespace zsLib
     }
 
     //-------------------------------------------------------------------------
+    bool IEventingTypes::isAString(PredefinedTypedefs type)
+    {
+      switch (type)
+      {
+        case PredefinedTypedef_string:    return true;
+        case PredefinedTypedef_astring:   return true;
+        default:                          break;
+      }
+      return false;
+    }
+    
+    //-------------------------------------------------------------------------
+    bool IEventingTypes::isWString(PredefinedTypedefs type)
+    {
+      switch (type)
+      {
+        case PredefinedTypedef_wstring:   return true;
+        default:                          break;
+      }
+      return false;
+    }
+
+    //-------------------------------------------------------------------------
     size_t IEventingTypes::getMinBytes(PredefinedTypedefs type)
     {
       switch (type)
@@ -436,13 +461,13 @@ namespace zsLib
         case PredefinedTypedef_ushort:    return sizeof(short);
         case PredefinedTypedef_short:     return sizeof(short);
         case PredefinedTypedef_sshort:    return sizeof(short);
-        case PredefinedTypedef_uint:      return sizeof(int);
-        case PredefinedTypedef_int:       return sizeof(int);
-        case PredefinedTypedef_sint:      return sizeof(int);
-        case PredefinedTypedef_ulong:     return sizeof(int);
-        case PredefinedTypedef_long:      return sizeof(int);
-        case PredefinedTypedef_slong:     return sizeof(int);
-        case PredefinedTypedef_ulonglong: return sizeof(long long);
+        case PredefinedTypedef_uint:      return sizeof(uint32_t);
+        case PredefinedTypedef_int:       return sizeof(int32_t);
+        case PredefinedTypedef_sint:      return sizeof(int32_t);
+        case PredefinedTypedef_ulong:     return sizeof(uint32_t);
+        case PredefinedTypedef_long:      return sizeof(int32_t);
+        case PredefinedTypedef_slong:     return sizeof(int32_t);
+        case PredefinedTypedef_ulonglong: return sizeof(unsigned long long);
         case PredefinedTypedef_longlong:  return sizeof(long long);
         case PredefinedTypedef_slonglong: return sizeof(long long);
 
@@ -470,7 +495,8 @@ namespace zsLib
         case PredefinedTypedef_float32:   return 4;
         case PredefinedTypedef_float64:   return 8;
 
-        case PredefinedTypedef_pointer:   return sizeof(int);
+        case PredefinedTypedef_void:
+        case PredefinedTypedef_pointer:   return sizeof(unsigned long);
 
         case PredefinedTypedef_binary:    return 0;
         case PredefinedTypedef_size:      return sizeof(int);
@@ -490,19 +516,19 @@ namespace zsLib
       {
         case PredefinedTypedef_bool:      return sizeof(bool);
 
-        case PredefinedTypedef_uchar:     return sizeof(char);
+        case PredefinedTypedef_uchar:     return sizeof(unsigned char);
         case PredefinedTypedef_char:      return sizeof(char);
         case PredefinedTypedef_schar:     return sizeof(char);
-        case PredefinedTypedef_ushort:    return sizeof(short);
+        case PredefinedTypedef_ushort:    return sizeof(unsigned short);
         case PredefinedTypedef_short:     return sizeof(short);
         case PredefinedTypedef_sshort:    return sizeof(short);
-        case PredefinedTypedef_uint:      return sizeof(int);
-        case PredefinedTypedef_int:       return sizeof(int);
-        case PredefinedTypedef_sint:      return sizeof(int);
-        case PredefinedTypedef_ulong:     return sizeof(long long);
+        case PredefinedTypedef_uint:      return sizeof(uint64_t);
+        case PredefinedTypedef_int:       return sizeof(int64_t);
+        case PredefinedTypedef_sint:      return sizeof(int64_t);
+        case PredefinedTypedef_ulong:     return sizeof(unsigned long long);
         case PredefinedTypedef_long:      return sizeof(long long);
         case PredefinedTypedef_slong:     return sizeof(long long);
-        case PredefinedTypedef_ulonglong: return sizeof(long long);
+        case PredefinedTypedef_ulonglong: return sizeof(unsigned long long);
         case PredefinedTypedef_longlong:  return sizeof(long long);
         case PredefinedTypedef_slonglong: return sizeof(long long);
 
@@ -530,6 +556,7 @@ namespace zsLib
         case PredefinedTypedef_float32:   return 4;
         case PredefinedTypedef_float64:   return 8;
 
+        case PredefinedTypedef_void:
         case PredefinedTypedef_pointer:   return sizeof(long long);
 
         case PredefinedTypedef_binary:    return 0;
@@ -654,6 +681,16 @@ namespace zsLib
         }
         rootEl->adoptAsLastChild(templatesEl);
       }
+      
+      if (mSubsystems.size() > 0) {
+        ElementPtr subsystemsEl = Element::create("subsystems");
+        for (auto iter = mSubsystems.begin(); iter != mSubsystems.end(); ++iter)
+        {
+          auto subsystemEl = (*iter).second->createElement("subsystem");
+          subsystemsEl->adoptAsLastChild(subsystemEl);
+        }
+        rootEl->adoptAsLastChild(subsystemsEl);
+      }
 
       return rootEl;
     }
@@ -718,10 +755,30 @@ namespace zsLib
 
       createTypesdefs(rootEl->findFirstChildElement("typedefs"), mTypedefs, &mAliases);
       createChannels(rootEl->findFirstChildElement("channels"), mChannels, &mAliases);
-      createOpCodes(rootEl->findFirstChildElement("opCodes"), mOpCodes, &mAliases);
+      createOpCodes(rootEl->findFirstChildElement("opcodes"), mOpCodes, &mAliases);
       createTasks(rootEl->findFirstChildElement("tasks"), mTasks, &mAliases);
+      createKeywords(rootEl->findFirstChildElement("keywords"), mKeywords, &mAliases);
       createDataTemplates(rootEl->findFirstChildElement("templates"), mDataTemplates, mTypedefs, &mAliases);
-      createEvents(rootEl->findFirstChildElement("events"), mEvents, mChannels, mOpCodes, mTasks, mDataTemplates, &mAliases);
+      createEvents(rootEl->findFirstChildElement("events"), mEvents, mChannels, mOpCodes, mTasks, mKeywords, mDataTemplates, &mAliases);
+      createSubsystems(rootEl->findFirstChildElement("subsystems"), mSubsystems, &mAliases);
+      
+      {
+        for (auto iter_doNotUse = mDataTemplates.begin(); iter_doNotUse != mDataTemplates.end();)
+        {
+          auto current = iter_doNotUse;
+          ++iter_doNotUse;
+
+          String key = (*current).first;
+          DataTemplatePtr templateObj = (*current).second;
+          auto hash = templateObj->uniqueID();
+          auto uniqueID = templateObj->hash();
+
+          if (hash == uniqueID) continue;
+          if (key == hash) continue;
+
+          mDataTemplates.erase(current);
+        }
+      }
     }
 
     //-------------------------------------------------------------------------
@@ -774,13 +831,20 @@ namespace zsLib
         hasher->update((*iter).second->hash());
       }
 
-      hasher->update(":list:opcodes");
+      hasher->update(":list:tasks");
       for (auto iter = mTasks.begin(); iter != mTasks.end(); ++iter)
       {
         hasher->update(":");
         hasher->update((*iter).second->hash());
       }
 
+      hasher->update(":list:keywords");
+      for (auto iter = mKeywords.begin(); iter != mKeywords.end(); ++iter)
+      {
+        hasher->update(":");
+        hasher->update((*iter).second->hash());
+      }
+      
       hasher->update(":list:events");
       for (auto iter = mEvents.begin(); iter != mEvents.end(); ++iter)
       {
@@ -794,8 +858,15 @@ namespace zsLib
         hasher->update(":");
         hasher->update((*iter).second->hash());
       }
-      hasher->update(":end");
 
+      hasher->update(":list:subsystems");
+      for (auto iter = mSubsystems.begin(); iter != mSubsystems.end(); ++iter)
+      {
+        hasher->update(":");
+        hasher->update((*iter).second->hash());
+      }
+      hasher->update(":end");
+      
       return UseEventingHelper::convertToHex(hasher->finalize(), hasher->digestSize());
     }
 
@@ -983,6 +1054,8 @@ namespace zsLib
           }
 
           processedTypedefs[type] = String();
+
+          type = (*found).second;
         } while (true);
       }
     }
@@ -1103,7 +1176,7 @@ namespace zsLib
         }
       }
 
-      createOpCodes(rootEl->findFirstChildElement("opCodes"), mOpCodes, aliases);
+      createOpCodes(rootEl->findFirstChildElement("opcodes"), mOpCodes, aliases);
     }
 
     //-------------------------------------------------------------------------
@@ -1111,22 +1184,22 @@ namespace zsLib
     {
       if (NULL == objectName) objectName = "channel";
 
-      ElementPtr channelEl = Element::create(objectName);
+      ElementPtr taskEl = Element::create(objectName);
 
-      if (mName.hasData()) channelEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("name", mName));
-      if (0 != mValue) channelEl->adoptAsLastChild(UseEventingHelper::createElementWithNumber("value", string(mValue)));
+      if (mName.hasData()) taskEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("name", mName));
+      if (0 != mValue) taskEl->adoptAsLastChild(UseEventingHelper::createElementWithNumber("value", string(mValue)));
 
       if (mOpCodes.size() > 0) {
-        ElementPtr opCodesEl = Element::create("opCodes");
+        ElementPtr opCodesEl = Element::create("opcodes");
 
         for (auto iter = mOpCodes.begin(); iter != mOpCodes.end(); ++iter) {
-          ElementPtr opCode = (*iter).second->createElement("opCode");
+          ElementPtr opCode = (*iter).second->createElement("opcode");
           opCodesEl->adoptAsLastChild(opCode);
         }
-        channelEl->adoptAsLastChild(opCodesEl);
+        taskEl->adoptAsLastChild(opCodesEl);
       }
 
-      return channelEl;
+      return taskEl;
     }
 
     //-------------------------------------------------------------------------
@@ -1183,6 +1256,79 @@ namespace zsLib
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
     #pragma mark
+    #pragma mark IEventingTypes::Keyword
+    #pragma mark
+
+    //-------------------------------------------------------------------------
+    IEventingTypes::Keyword::Keyword(
+                                     const ElementPtr &rootEl,
+                                     const AliasMap *aliases
+                                     ) throw (InvalidContent)
+    {
+      mName = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(rootEl->findFirstChildElement("name")));
+      String mask = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(rootEl->findFirstChildElement("mask")));
+
+      if (mask.hasData()) {
+        try {
+          mMask = Numeric<decltype(mMask)>(mask);
+        } catch (const Numeric<decltype(mMask)>::ValueOutOfRange &) {
+          ZS_THROW_CUSTOM(InvalidContent, String("Keyword mask is out of range: ") + mask);
+        }
+      }
+    }
+
+    //-------------------------------------------------------------------------
+    ElementPtr IEventingTypes::Keyword::createElement(const char *objectName) const
+    {
+      if (NULL == objectName) objectName = "keyword";
+
+      ElementPtr keywordEl = Element::create(objectName);
+
+      if (mName.hasData()) keywordEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("name", mName));
+      if (0 != mMask) keywordEl->adoptAsLastChild(UseEventingHelper::createElementWithNumber("mask", string(mMask)));
+
+      return keywordEl;
+    }
+
+    //-------------------------------------------------------------------------
+    String IEventingTypes::Keyword::hash() const
+    {
+      auto hasher = IHasher::sha256();
+
+      hasher->update(mName);
+      hasher->update(":");
+      hasher->update(reinterpret_cast<const BYTE *>(&mMask), sizeof(mMask));
+      hasher->update(":end");
+
+      return UseEventingHelper::convertToHex(hasher->finalize(), hasher->digestSize());
+    }
+
+    //-------------------------------------------------------------------------
+    void IEventingTypes::createKeywords(
+                                        ElementPtr keywordsEl,
+                                        KeywordMap &outKeywords,
+                                        const AliasMap *aliases
+                                        ) throw (InvalidContent)
+    {
+      if (NULL == keywordsEl) return;
+
+      ElementPtr keywordEl = keywordsEl->findFirstChildElement("keyword");
+      while (keywordEl)
+      {
+        auto keyword = Keyword::create(keywordEl);
+        if (outKeywords.find(keyword->mName) != outKeywords.end()) {
+          ZS_THROW_CUSTOM(InvalidContent, String("Keyword already exists: ") + keyword->mName);
+        }
+        outKeywords[keyword->mName] = keyword;
+        keywordEl = keywordEl->findNextSiblingElement("keyword");
+      }
+    }
+
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    #pragma mark
     #pragma mark IEventingTypes::OpCode
     #pragma mark
 
@@ -1207,7 +1353,7 @@ namespace zsLib
     //-------------------------------------------------------------------------
     ElementPtr IEventingTypes::OpCode::createElement(const char *objectName) const
     {
-      if (NULL == objectName) objectName = "opCode";
+      if (NULL == objectName) objectName = "opcode";
 
       ElementPtr opCodeEl = Element::create(objectName);
       if (mName.hasData()) opCodeEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("name", mName));
@@ -1244,7 +1390,7 @@ namespace zsLib
     {
       if (!opCodesEl) return;
 
-      ElementPtr opCodeEl = opCodesEl->findFirstChildElement("opCode");
+      ElementPtr opCodeEl = opCodesEl->findFirstChildElement("opcode");
       while (opCodeEl)
       {
         auto opCode = OpCode::create(opCodeEl);
@@ -1252,7 +1398,7 @@ namespace zsLib
           ZS_THROW_CUSTOM(InvalidContent, String("OpCode already exists: ") + opCode->mName);
         }
         outOpCodes[opCode->mName] = opCode;
-        opCodeEl = opCodeEl->findNextSiblingElement("opCode");
+        opCodeEl = opCodeEl->findNextSiblingElement("opcode");
       }
     }
 
@@ -1309,12 +1455,22 @@ namespace zsLib
       if (mTask) {
         eventEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("task", mTask->mName));
       }
+      if (mKeywords.size() > 0) {
+        auto keywordsEl = Element::create("keywords");
+        for (auto iter = mKeywords.begin(); iter != mKeywords.end(); ++iter) {
+          auto keyword = (*iter).second;
+          
+          keywordsEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("keyword", keyword->mName));
+        }
+        eventEl->adoptAsLastChild(keywordsEl);
+      }
       if (mOpCode) {
-        eventEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("opCode", mOpCode->mName));
+        eventEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("opcode", mOpCode->mName));
       }
       if (mDataTemplate) {
         eventEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("template", mDataTemplate->hash()));
       }
+      if (0 != mValue) eventEl->adoptAsLastChild(UseEventingHelper::createElementWithNumber("value", string(mValue)));
       return eventEl;
     }
 
@@ -1336,6 +1492,13 @@ namespace zsLib
       if (mTask) {
         hasher->update(mTask->hash());
       }
+      hasher->update(":keywords:start:");
+      for (auto iter = mKeywords.begin(); iter != mKeywords.end(); ++iter) {
+        auto keyword = (*iter).second;
+        hasher->update(keyword->mName);
+        hasher->update(":");
+      }
+      hasher->update(":keywords:end:");
       hasher->update(":");
       if (mOpCode) {
         hasher->update(mOpCode->hash());
@@ -1356,8 +1519,9 @@ namespace zsLib
                                       ElementPtr eventsEl,
                                       EventMap &outEvents,
                                       const ChannelMap &channels,
-                                      const OpCodeMap &opCodes,
+                                      OpCodeMap &opCodes,
                                       const TaskMap &tasks,
+                                      const KeywordMap &keywords,
                                       const DataTemplateMap &dataTemplates,
                                       const AliasMap *aliases
                                       ) throw (InvalidContent)
@@ -1371,7 +1535,7 @@ namespace zsLib
         outEvents[event->mName] = event;
 
         String channel = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("channel")));
-        String opCode = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("opCode")));
+        String opCode = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("opcode")));
         String task = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("task")));
         String templateStr = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("template")));
         String valueStr = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(eventEl->findFirstChildElement("value")));
@@ -1407,9 +1571,18 @@ namespace zsLib
         if (opCode.hasData()) {
           auto found = opCodes.find(opCode);
           if (found == opCodes.end()) {
-            ZS_THROW_CUSTOM(InvalidContent, String("Event \"") + event->mName + "\" links to invalid opcode:" + opCode);
+            try {
+              auto predefinedOpCode = IEventingTypes::toPredefinedOpCode(opCode);
+              event->mOpCode = IEventingTypes::OpCode::create();
+              event->mOpCode->mName = opCode;
+              event->mOpCode->mValue = predefinedOpCode;
+              opCodes[opCode] = event->mOpCode;
+            } catch (const InvalidArgument &) {
+              ZS_THROW_CUSTOM(InvalidContent, String("Event \"") + event->mName + "\" links to invalid opcode:" + opCode);
+            }
+          } else {
+            event->mOpCode = (*found).second;
           }
-          event->mOpCode = (*found).second;
         }
 
         if (templateStr.hasData()) {
@@ -1447,6 +1620,7 @@ namespace zsLib
                                                const AliasMap *aliases
                                                ) throw (InvalidContent)
     {
+      mID = UseEventingHelper::getElementTextAndDecode(rootEl->findFirstChildElement("id"));
     }
 
     //-------------------------------------------------------------------------
@@ -1457,6 +1631,10 @@ namespace zsLib
       auto templateEl = Element::create("template");
 
       if (mDataTypes.size() > 0) {
+        String id = hash(); // do not use the provided unique ID, generate a new ID
+
+        templateEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("id", id));
+        
         ElementPtr dataTypesEl = Element::create("dataTypes");
         for (auto iter = mDataTypes.begin(); iter != mDataTypes.end(); ++iter)
         {
@@ -1469,6 +1647,13 @@ namespace zsLib
       }
 
       return templateEl;
+    }
+
+    //-------------------------------------------------------------------------
+    String IEventingTypes::DataTemplate::uniqueID() const
+    {
+      if (mID.hasData()) return mID;
+      return hash();
     }
 
     //-------------------------------------------------------------------------
@@ -1507,11 +1692,20 @@ namespace zsLib
         ElementPtr typesEl = templateEl->findFirstChildElement("dataTypes");
         createDataTypes(typesEl, templateObj->mDataTypes, typedefs, aliases);
 
+        String uniqueID = templateObj->uniqueID();
         String hash = templateObj->hash();
 
         {
+          auto found = outDataTemplates.find(uniqueID);
+          if (found == outDataTemplates.end()) {
+            // only insert the data template if it's not been inserted before
+            outDataTemplates[uniqueID] = templateObj;
+          }
+        }
+
+        {
           auto found = outDataTemplates.find(hash);
-          if (found != outDataTemplates.end()) {
+          if (found == outDataTemplates.end()) {
             // only insert the data template if it's not been inserted before
             outDataTemplates[hash] = templateObj;
           }
@@ -1598,8 +1792,82 @@ namespace zsLib
       {
         auto dataType = DataType::create(dataTypeEl, &typedefs, aliases);
         dataTypeEl = dataTypeEl->findNextSiblingElement("dataType");
+        outDataTypes.push_back(dataType);
       }
     }
 
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    //-------------------------------------------------------------------------
+    #pragma mark
+    #pragma mark IEventingTypes::Subsystem
+    #pragma mark
+    
+    //-------------------------------------------------------------------------
+    IEventingTypes::Subsystem::Subsystem(
+                                         const ElementPtr &rootEl,
+                                         const AliasMap *aliases
+                                         ) throw (InvalidContent)
+    {
+      mName = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(rootEl->findFirstChildElement("name")));
+      String levelStr = aliasLookup(aliases, UseEventingHelper::getElementTextAndDecode(rootEl->findFirstChildElement("level")));
+      
+      if (levelStr.hasData()) {
+        try {
+          mLevel = zsLib::Log::toLevel(levelStr);
+        } catch (const InvalidArgument &) {
+          ZS_THROW_CUSTOM(InvalidContent, String("Subsystem \"") + mName + "\" level is not valid: " + levelStr);
+        }
+      }
+    }
+    
+    //-------------------------------------------------------------------------
+    ElementPtr IEventingTypes::Subsystem::createElement(const char *objectName) const
+    {
+      if (NULL == objectName) objectName = "subsystem";
+      
+      ElementPtr subsystemEl = Element::create(objectName);
+      
+      if (mName.hasData()) subsystemEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("name", mName));
+      subsystemEl->adoptAsLastChild(UseEventingHelper::createElementWithTextAndJSONEncode("level", zsLib::Log::toString(mLevel)));
+      
+      return subsystemEl;
+    }
+
+    //-------------------------------------------------------------------------
+    String IEventingTypes::Subsystem::hash() const
+    {
+      auto hasher = IHasher::sha256();
+      
+      hasher->update(":subsystem:");
+      hasher->update(mName);
+      hasher->update(":");
+      hasher->update(Log::toString(mLevel));
+      hasher->update(":");
+      
+      return UseEventingHelper::convertToHex(hasher->finalize(), hasher->digestSize());
+    }
+    
+    //-------------------------------------------------------------------------
+    void IEventingTypes::createSubsystems(
+                                          ElementPtr subsystemsEl,
+                                          SubsystemMap &outSubsystems,
+                                          const AliasMap *aliases
+                                          ) throw (InvalidContent)
+    {
+      if (!subsystemsEl) return;
+      
+      ElementPtr subsystemEl = subsystemsEl->findFirstChildElement("subsystem");
+      while (subsystemEl)
+      {
+        auto subsystem = Subsystem::create(subsystemEl, aliases);
+        subsystemEl = subsystemEl->findNextSiblingElement("subsystem");
+
+        // NOTE: This could override a previous value, but that's okay
+        outSubsystems[subsystem->mName] = subsystem;
+      }
+    }
+    
   } // namespace eventing
 } // namespace zsLib

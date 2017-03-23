@@ -7,25 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0058FDD51E14A93F007548F6 /* zsLib_eventing_tool_Helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0058FDD41E14A93F007548F6 /* zsLib_eventing_tool_Helper.cpp */; };
+		0058FDDC1E1553CC007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0058FDDB1E1553CC007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */; };
 		008697F51DE3F20A009D669C /* zsLib_eventing_tool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */; };
 		008697F61DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */; settings = {COMPILER_FLAGS = "-Wno-documentation"; }; };
-		008697F71DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */; };
+		009CEEEA1DF3A0DA000FF4D2 /* zsLib_eventing_tool_Monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 009CEEE91DF3A0DA000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0058FDD41E14A93F007548F6 /* zsLib_eventing_tool_Helper.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Helper.cpp; sourceTree = "<group>"; };
+		0058FDD61E14A963007548F6 /* zsLib_eventing_tool_Helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Helper.h; sourceTree = "<group>"; };
+		0058FDDA1E1553BC007548F6 /* zsLib_eventing_tool_EventingCompiler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_EventingCompiler.h; sourceTree = "<group>"; };
+		0058FDDB1E1553CC007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_EventingCompiler.cpp; sourceTree = "<group>"; };
 		008697BB1DE3F1E9009D669C /* libzsLib-eventing-tool-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libzsLib-eventing-tool-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool.cpp; sourceTree = "<group>"; };
 		008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_CommandLine.cpp; sourceTree = "<group>"; };
-		008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Compiler.cpp; sourceTree = "<group>"; };
 		008697DE1DE3F20A009D669C /* ICommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICommandLine.h; sourceTree = "<group>"; };
 		008697DF1DE3F20A009D669C /* ICompiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICompiler.h; sourceTree = "<group>"; };
 		008697E11DE3F20A009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
 		008697E21DE3F20A009D669C /* zsLib_eventing_tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool.h; sourceTree = "<group>"; };
 		008697E31DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_CommandLine.h; sourceTree = "<group>"; };
-		008697E41DE3F20A009D669C /* zsLib_eventing_tool_Compiler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Compiler.h; sourceTree = "<group>"; };
 		008697E51DE3F20A009D669C /* OutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OutputStream.h; sourceTree = "<group>"; };
 		008697E61DE3F20A009D669C /* tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tool.h; sourceTree = "<group>"; };
 		008697E71DE3F20A009D669C /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		009CEEE81DF3A0D0000FF4D2 /* zsLib_eventing_tool_Monitor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = zsLib_eventing_tool_Monitor.h; sourceTree = "<group>"; };
+		009CEEE91DF3A0DA000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = zsLib_eventing_tool_Monitor.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +97,9 @@
 			children = (
 				008697DB1DE3F20A009D669C /* zsLib_eventing_tool.cpp */,
 				008697DC1DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp */,
-				008697DD1DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp */,
+				0058FDDB1E1553CC007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp */,
+				0058FDD41E14A93F007548F6 /* zsLib_eventing_tool_Helper.cpp */,
+				009CEEE91DF3A0DA000FF4D2 /* zsLib_eventing_tool_Monitor.cpp */,
 			);
 			path = cpp;
 			sourceTree = "<group>";
@@ -102,7 +110,9 @@
 				008697E11DE3F20A009D669C /* types.h */,
 				008697E21DE3F20A009D669C /* zsLib_eventing_tool.h */,
 				008697E31DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.h */,
-				008697E41DE3F20A009D669C /* zsLib_eventing_tool_Compiler.h */,
+				0058FDDA1E1553BC007548F6 /* zsLib_eventing_tool_EventingCompiler.h */,
+				0058FDD61E14A963007548F6 /* zsLib_eventing_tool_Helper.h */,
+				009CEEE81DF3A0D0000FF4D2 /* zsLib_eventing_tool_Monitor.h */,
 			);
 			path = internal;
 			sourceTree = "<group>";
@@ -174,9 +184,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				008697F71DE3F20A009D669C /* zsLib_eventing_tool_Compiler.cpp in Sources */,
 				008697F61DE3F20A009D669C /* zsLib_eventing_tool_CommandLine.cpp in Sources */,
 				008697F51DE3F20A009D669C /* zsLib_eventing_tool.cpp in Sources */,
+				009CEEEA1DF3A0DA000FF4D2 /* zsLib_eventing_tool_Monitor.cpp in Sources */,
+				0058FDD51E14A93F007548F6 /* zsLib_eventing_tool_Helper.cpp in Sources */,
+				0058FDDC1E1553CC007548F6 /* zsLib_eventing_tool_EventingCompiler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
